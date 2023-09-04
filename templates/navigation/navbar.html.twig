@@ -1,0 +1,27 @@
+<header>
+    <img id="snow_deco" src="{{ asset('assets/images/deco/neige_long1.png') }}" alt="snow_decoration">
+    <img id="paper_deco" src="{{ asset('assets/images/deco/papier.png') }}" alt="snow_decoration">
+    <div class="nav-left">
+        <a href={{ path('app_home')}}><img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo"></a>
+    </div>
+    <div class="nav-right">
+        <div class="nav-right-link">
+            <a href={{ path('app_home')}}>Accueil</a>
+        </div>
+        <div class="nav-right-link">
+            <a href="#">Tricks</a>
+        </div>
+        
+        {% if app.user == false %}
+        <div class="nav-right-link">
+            <a href="#">Inscription</a>
+        </div>
+        {% endif %}
+        
+        {# <div>
+            <a class="nav-right-link" href=" {{ app.user ? path('app_logout') : path('app_login') }} ">
+                {{ app.user ? 'Déconnexion' : 'Connexion' }}
+            </a>
+        </div> #}
+    </div>
+</header>
