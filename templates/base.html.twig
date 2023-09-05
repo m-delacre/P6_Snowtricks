@@ -16,11 +16,14 @@
     </head>
 
     <body>
-        {# navigation #}
+        {# header #}
         {{ include('navigation/navbar.html.twig') }}
 
         {# contenu #}
         {% block body %}{% endblock %}
+
+        {# footer #}
+        {{ include('navigation/footer.html.twig') }}
     </body>
 
 </html>
