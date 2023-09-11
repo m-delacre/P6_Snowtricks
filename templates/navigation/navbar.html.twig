@@ -17,10 +17,11 @@
         </div>
         {% endif %}
         
-        {# <div>
-            <a class="nav-right-link" href=" {{ app.user ? path('app_logout') : path('app_login') }} ">
+        <div class="nav-right-link">
+            {# <a class="nav-right-link" href=" {{ app.user ? path('app_logout') : path('app_login') }} "> #}
+            <a href="#">
                 {{ app.user ? 'Déconnexion' : 'Connexion' }}
             </a>
-        </div> #}
+        </div>
     </div>
 </header>
