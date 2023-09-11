@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil Snowtricks{% endblock %}
+
+{% block body %}
+
+<div class="home-welcome">
+    <div class="home-welcome-content-img">
+        <img src="{{ asset('assets/images/snowboard_illustration.jpg') }}" alt="snowboard illustration">
+    </div>
+    <div class="home-welcome-content">
+        <img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo">
+        <h1>🏂 Bienvenue sur SnowTricks 🏂</h1>
+    </div>
+    <a class="home-welcome-arrow" href="#figures">⬇️</a>
+    <img id="home_paper_deco" src="{{ asset('assets/images/deco/papier.png') }}" alt="paper_decoration">
+    <img id="home_paper_deco2" src="{{ asset('assets/images/deco/papier.png') }}" alt="paper_decoration">
+</div>
+<div class="home-figures" id="figures">
+    <h1>Tous les tricks :</h1>
+    <h1>Tous les tricks :</h1>
+</div>
+
+{% endblock %}
