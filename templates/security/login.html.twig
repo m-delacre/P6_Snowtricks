@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="loginpage">
+    <form method="post" class="login-form">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Connexion :</h1>
+
+        <div class="login-form-inputgroup">
+            <label for="inputUsername">Pseudo :</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+        </div>
+
+        <div class="login-form-inputgroup">
+            <label for="inputPassword">Mot de passe :</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        </div>
+
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+        >
+
+        <a href=" {{ path('app_forgot_password_request') }}">mot de passe oublié ?</a>
+
+        <div class="login-btns">
+            <button class="login-form-btn" type="submit">
+                Connexion
+            </button>
+            <button class="login-form-btn">
+                <a href=" {{ path('app_register') }} ">S'inscrire</a>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
