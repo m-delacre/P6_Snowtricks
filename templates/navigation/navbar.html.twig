@@ -4,22 +4,35 @@
         <a href={{ path('app_home')}}><img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo"></a>
     </div>
     <div class="nav-right">
+
         <div class="nav-right-link">
             <a href={{ path('app_home')}}>Accueil</a>
         </div>
+
         <div class="nav-right-link">
             <a href="#">Tricks</a>
         </div>
-        
+
+        <div class="nav-right-link">
+            <a href="#">Ajouter un trick</a>
+        </div>
+
+        {% if app.user %}
+        <div class="nav-right-link">
+            <a href="#">
+                {{ app.user ? app.user.username : '' }}
+            </a>
+        </div>
+        {% endif %}
+    
         {% if app.user == false %}
         <div class="nav-right-link">
-            <a href="#">Inscription</a>
+            <a href={{ path('app_register')}}>Inscription</a>
         </div>
         {% endif %}
         
         <div class="nav-right-link">
-            {# <a class="nav-right-link" href=" {{ app.user ? path('app_logout') : path('app_login') }} "> #}
-            <a href="#">
+            <a href=" {{ app.user ? path('app_logout') : path('app_login') }} ">
                 {{ app.user ? 'Déconnexion' : 'Connexion' }}
             </a>
         </div>
