@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{# {% block stylesheets %}
+<link href="../../assets/style.css" rel="stylesheet">
+{% endblock %} #}
+
+{% block title %}Créer une figure{% endblock %}
+
+{% block body %}
+<div class="">
+
+    <h1>Ajouter une nouvelle figure :</h1>
+
+    {{ form_errors(form) }}
+
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.groupe) }}
+        {{ form_row(form.description) }}
+
+        <button type="submit" class="register-form-btn">Créer la figure</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

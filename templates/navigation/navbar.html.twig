@@ -1,5 +1,5 @@
 <header>
-    <img id="paper_deco" src="{{ asset('assets/images/deco/papier.png') }}" alt="snow_decoration">
+    <img id="paper_deco" src="{{ asset('../assets/images/deco/papier.png') }}" alt="snow_decoration">
     <div class="nav-left">
         <a href={{ path('app_home')}}><img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo"></a>
     </div>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="nav-right-link">
-            <a href="#">Ajouter un trick</a>
+            <a href={{ path('app_figure_create')}}>Ajouter un trick</a>
         </div>
 
         {% if app.user %}
