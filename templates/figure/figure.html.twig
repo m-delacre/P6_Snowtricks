@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Tricks{% endblock %}
+
+{% block body %}
+<main class="figure-page">
+    <section class="figure-page-head">
+        <h1>{{ figure.name }}</h1>
+        <button class="register-form-btn"><a href="{{ path('app_figure_edit', {id: figure.id}) }}">Edit</a></button>
+    </section>
+    <section class="figure-page-medias">
+    </section>
+    <section class="figure-page-description">
+        <p>{{ figure.description }}</p>
+    </section>
+    <section class="figure-page-info">
+        <p>{{ figure.groupe.value }}</p>
+        <p>Date de création : {{ figure.getCreationDate|date("d/m/Y") }}</p>
+        {% if figure.getUpdateDate %}
+        <p>Dernière mise à jour : {{ figure.getUpdateDate|date("d/m/Y") }}</p>
+        {% else %}
+        <p>pas d'update</p>
+        {% endif %}
+    </section>
+    {# <iframe width="720" height="480" src="https://www.youtube.com/embed/vbT7tGwCRUM?list=PLFHz2csJcgk-t8ErN1BHUUxTNj45dkSqS" title="How to Create Blog Items in Symfony 6 | How to Create a Blog in Symfony | Symfony 6 for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> #}
+
+    {# modal #}
+    <div id="uploadModal" class="uploadMediaModal hideModal">
+        <span id="modalExitBtn">x</span>
+        <p>modal open</p>
+    </div>
+</main>
+{% endblock %}

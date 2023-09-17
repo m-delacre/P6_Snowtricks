@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Tricks{% endblock %}
+
+{% block body %}
+<main class="figures-page">
+<h1>Tous les tricks :</h1>
+{% if figures == null %}
+    <p>Pas de figures pour le moment...</p>
+    {% else %}
+    <div class="figures-page-cards">
+    {% for figure in figures %}
+        <article class="figure-card">
+            <section class="figure-card-top">
+                {# TODO: remplacer par l'image #}
+                <div class="figure-card-imgplaceholder"></div>
+            </section>
+            <section class="figure-card-bot">
+                <p><a href="{{ path('app_figure', {name: figure.name})}}">{{ figure.name }}</a></p>
+            </section>
+        </article>
+    {% endfor %}
+    </div>
+{% endif %}
+</main>
+{% endblock %}

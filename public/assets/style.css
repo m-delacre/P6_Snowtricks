@@ -321,3 +321,74 @@ footer{
     cursor: pointer;
     color: #fdfdfd;
 }
+
+/*  page figures    */
+.figures-page{
+    width: 100%;
+    height: fit-content;
+    min-height: 90vh;
+    padding: 50px 200px 50px 200px;
+    box-sizing: border-box;
+}
+
+.figures-page h1{
+    font-size: 35px;
+}
+
+.figures-page-cards{
+    width: 100% / 3;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid red;
+    gap: 15px;
+}
+
+.figure-card{
+    width: 30%;
+    height: 300px;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.figure-card-top{
+    width: 100%;
+    height: 80%;
+    background-color: green;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.figure-card-bot{
+    width: 100%;
+    height: 20%;
+    background-color: #fdfdfd;
+    border-radius: 0px 0px 20px 20px ;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+
+.figure-card-bot p a{
+    font-size: 30px;
+}
+
+.uploadMediaModal{
+    width: 600px;
+    height: 300px;
+    background-color: black;
+    color: #fdfdfd;
+}
+
+.hideModal{
+    display: none;
+}
+.displayModal{
+    display: flex;
+}

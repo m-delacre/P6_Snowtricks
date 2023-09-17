@@ -6,15 +6,15 @@
     <div class="nav-right">
 
         <div class="nav-right-link">
-            <a href={{ path('app_home')}}>Accueil</a>
+            <a href="{{ path('app_home')}}">Accueil</a>
         </div>
 
         <div class="nav-right-link">
-            <a href="#">Tricks</a>
+            <a href="{{ path('app_figures')}}">Tricks</a>
         </div>
 
         <div class="nav-right-link">
-            <a href={{ path('app_figure_create')}}>Ajouter un trick</a>
+            <a href="{{ path('app_figure_create')}}">Ajouter un trick</a>
         </div>
 
         {% if app.user %}
@@ -27,7 +27,7 @@
     
         {% if app.user == false %}
         <div class="nav-right-link">
-            <a href={{ path('app_register')}}>Inscription</a>
+            <a href="{{ path('app_register')}}">Inscription</a>
         </div>
         {% endif %}
         

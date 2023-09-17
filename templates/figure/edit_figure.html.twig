@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Tricks{% endblock %}
+
+{% block body %}
+<main class="figure-page">
+    <section class="figure-page-head">
+        <h1>{{ figure.name }}</h1>
+        {# <button class="register-form-btn"><a href="{{ path('app_figure_edit') }}">Edit</a></button> #}
+        <button class="register-form-btn" id="editMediaBtn">Edit</button>
+    </section>
+
+    {{ form_errors(figureForm) }}
+
+    {{ form_start(figureForm) }}
+        {{ form_row(figureForm.name) }}
+        {{ form_row(figureForm.groupe) }}
+        {{ form_row(figureForm.description) }}
+
+        <button type="submit" class="register-form-btn">Modifier la figure</button>
+    {{ form_end(figureForm) }}
+
+    {# modal #}
+    <div id="uploadModal" class="uploadMediaModal hideModal">
+        <span id="modalExitBtn">x</span>
+        <p>modal open</p>
+    </div>
+</main>
+{% endblock %}
+
+{% block javascripts %}
+<script src=" {{ asset('assets/js/mediaUploadModal.js') }}" defer></script>
+{% endblock %}
