@@ -35,12 +35,12 @@ class Figure
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $update_date = null;
 
-    #[ORM\OneToMany(mappedBy: 'figure_id', targetEntity: Media::class)]
-    private Collection $medias;
+    #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Media::class)]
+    private Collection $media;
 
     public function __construct()
     {
-        $this->medias = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -123,30 +123,43 @@ class Figure
     /**
      * @return Collection<int, Media>
      */
-    public function getMedias(): Collection
+    public function getMedia(): Collection
     {
-        return $this->medias;
+        return $this->media;
     }
 
-    public function addMedia(Media $media): static
+    public function addMedium(Media $medium): static
     {
-        if (!$this->medias->contains($media)) {
-            $this->medias->add($media);
-            $media->setFigureId($this);
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setFigure($this);
         }
 
         return $this;
     }
 
-    public function removeMedia(Media $media): static
+    public function removeMedium(Media $medium): static
     {
-        if ($this->medias->removeElement($media)) {
+        if ($this->media->removeElement($medium)) {
             // set the owning side to null (unless already changed)
-            if ($media->getFigureId() === $this) {
-                $media->setFigureId(null);
+            if ($medium->getFigure() === $this) {
+                $medium->setFigure(null);
             }
         }
 
         return $this;
+    }
+
+    public function getBanner(): ?Media
+    {
+        $medias = $this->getMedia();
+        //dd($medias);
+        foreach ( $medias as $media ) {
+            //var_dump($media);
+            if ( $media->isFirstMedia() ) {
+                return $media;
+            }
+        }
+        return null;
     }
 }

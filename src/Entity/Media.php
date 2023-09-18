@@ -13,15 +13,15 @@ class Media
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'medias')]
+    #[ORM\ManyToOne(inversedBy: 'media')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Figure $figure_id = null;
+    private ?Figure $figure = null;
+
+    #[ORM\Column(type: "string", enumType: MediaGroupe::class)]
+    private ?MediaGroupe $groupe = null;
 
     #[ORM\Column(length: 255)]
     private ?string $media_path = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $groupe = null;
 
     #[ORM\Column]
     private ?bool $firstMedia = null;
@@ -31,14 +31,26 @@ class Media
         return $this->id;
     }
 
-    public function getFigureId(): ?Figure
+    public function getFigure(): ?Figure
     {
-        return $this->figure_id;
+        return $this->figure;
     }
 
-    public function setFigureId(?Figure $figure_id): static
+    public function setFigure(?Figure $figure): static
     {
-        $this->figure_id = $figure_id;
+        $this->figure = $figure;
+
+        return $this;
+    }
+
+    public function getGroupe(): ?MediaGroupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(MediaGroupe $groupe): static
+    {
+        $this->groupe = $groupe;
 
         return $this;
     }
@@ -51,18 +63,6 @@ class Media
     public function setMediaPath(string $media_path): static
     {
         $this->media_path = $media_path;
-
-        return $this;
-    }
-
-    public function getGroupe(): ?string
-    {
-        return $this->groupe;
-    }
-
-    public function setGroupe(string $groupe): static
-    {
-        $this->groupe = $groupe;
 
         return $this;
     }

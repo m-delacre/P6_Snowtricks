@@ -23,7 +23,12 @@
     {# modal #}
     <div id="uploadModal" class="uploadMediaModal hideModal">
         <span id="modalExitBtn">x</span>
-        <p>modal open</p>
+        {{ form_errors(mediaForm) }}
+
+        {{ form_start(mediaForm, {'attr': {'class': 'register-form'}}) }}
+            {{ form_row(mediaForm.media_path, {'attr': {'class': 'register-form-inputgroup'}}) }}
+            <button type="submit" class="register-form-btn">Enregistrer</button>
+        {{ form_end(mediaForm) }}
     </div>
 </main>
 {% endblock %}

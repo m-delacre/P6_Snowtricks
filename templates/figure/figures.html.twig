@@ -13,7 +13,10 @@
         <article class="figure-card">
             <section class="figure-card-top">
                 {# TODO: remplacer par l'image #}
-                <div class="figure-card-imgplaceholder"></div>
+                <a  class="figure-card-imgplaceholder" href="{{ path('app_figure', {name: figure.name})}}">
+                    <img src="{{ figure.getBanner().getMediaPath() }}"alt="logo">
+                </a>
+                {# <div class="figure-card-imgplaceholder"></div> #}
             </section>
             <section class="figure-card-bot">
                 <p><a href="{{ path('app_figure', {name: figure.name})}}">{{ figure.name }}</a></p>
