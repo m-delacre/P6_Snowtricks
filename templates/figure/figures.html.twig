@@ -12,11 +12,15 @@
     {% for figure in figures %}
         <article class="figure-card">
             <section class="figure-card-top">
-                {# TODO: remplacer par l'image #}
-                <a  class="figure-card-imgplaceholder" href="{{ path('app_figure', {name: figure.name})}}">
+                {% if figure.getBanner() == null %}
+                <a href="{{ path('app_figure', {name: figure.name})}}">
+                    <div class="figure-card-imgplaceholder"></div>
+                </a>
+                {% else %}
+                <a href="{{ path('app_figure', {name: figure.name})}}">
                     <img src="{{ figure.getBanner().getMediaPath() }}"alt="logo">
                 </a>
-                {# <div class="figure-card-imgplaceholder"></div> #}
+                {% endif %}
             </section>
             <section class="figure-card-bot">
                 <p><a href="{{ path('app_figure', {name: figure.name})}}">{{ figure.name }}</a></p>

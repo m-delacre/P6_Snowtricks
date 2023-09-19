@@ -362,6 +362,12 @@ footer{
     border-radius: 20px 20px 0px 0px;
 }
 
+.figure-card-imgplaceholder{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px 15px 0px 0px;
+}
 .figure-card-top img{
     width: 100%;
     height: 100%;
@@ -385,8 +391,7 @@ footer{
     font-size: 30px;
 }
 
-/*  edit figure page    */ 
-
+/*  figure page    */ 
 .figure-page{
     width: 100%;
     height: fit-content;
@@ -394,6 +399,71 @@ footer{
     padding: 50px 200px 50px 200px;
     box-sizing: border-box;
     position: relative;
+}
+
+.figure-page-head{
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.figure-page-head-banner{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.figure-page-head-banner img{
+    width: 100%;
+    height: 100%;
+    filter: blur(5px) brightness(0.8);
+}
+
+.figure-page-head-title{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #fdfdfd;
+    filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 1));
+}
+
+.figure-page-head-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.separator{
+    width: 100%;
+    height: 10px;
+    border-top: 2px solid black;
+}
+
+/*  edit figure page    */
+
+.editBannerBtn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 4;
+    width: fit-content;
+    border: 3px solid black;
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    min-width: 250px;
+}
+
+.editBannerBtn:hover{
+    background-color: black;
+    cursor: pointer;
+    color: #fdfdfd;
 }
 
 .uploadMediaModal{

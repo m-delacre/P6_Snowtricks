@@ -38,9 +38,13 @@ class Figure
     #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Media::class)]
     private Collection $media;
 
+    #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Comment::class)]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,5 +165,35 @@ class Figure
             }
         }
         return null;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setFigure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getFigure() === $this) {
+                $comment->setFigure(null);
+            }
+        }
+
+        return $this;
     }
 }

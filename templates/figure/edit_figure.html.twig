@@ -4,16 +4,38 @@
 
 {% block body %}
 <main class="figure-page">
-    <section class="figure-page-head">
+    {# OLD OLD OLD OLD OLD OLD #}
+    {# <section class="figure-page-head">
         <h1>{{ figure.name }}</h1>
-        {# <button class="register-form-btn"><a href="{{ path('app_figure_edit') }}">Edit</a></button> #}
-        <button class="register-form-btn" id="editMediaBtn">Edit</button>
-    </section>
-
+        <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
+    </section> #}
+    {# =========================================================================================================== #}
     {{ form_errors(figureForm) }}
 
     {{ form_start(figureForm) }}
-        {{ form_row(figureForm.name) }}
+        <section class="figure-page-head">
+            {% if figure.getBanner() == null %}
+                <a href="{{ path('app_figure', {name: figure.name})}}">
+                    <div class="figure-card-imgplaceholder"></div>
+                </a>
+                {% else %}
+                <div class="figure-page-head-banner">
+                    <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner">
+                </div>
+            {% endif %}
+            <div class="figure-page-head-title">
+                {{ form_row(figureForm.name) }}
+            </div>
+            <div class="figure-page-head-btn">
+                <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
+            </div>
+        </section>
+    {# =========================================================================================================== #}
+
+    {# {{ form_errors(figureForm) }}
+
+    {{ form_start(figureForm) }}
+        {{ form_row(figureForm.name) }} #}
         {{ form_row(figureForm.groupe) }}
         {{ form_row(figureForm.description) }}
 

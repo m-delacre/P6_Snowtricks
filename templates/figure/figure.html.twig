@@ -5,8 +5,21 @@
 {% block body %}
 <main class="figure-page">
     <section class="figure-page-head">
-        <h1>{{ figure.name }}</h1>
-        <button class="register-form-btn"><a href="{{ path('app_figure_edit', {id: figure.id}) }}">Edit</a></button>
+        {% if figure.getBanner() == null %}
+            <a href="{{ path('app_figure', {name: figure.name})}}">
+                <div class="figure-card-imgplaceholder"></div>
+            </a>
+            {% else %}
+            <div class="figure-page-head-banner">
+                <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner">
+            </div>
+        {% endif %}
+        <div class="figure-page-head-title">
+            <h1>{{ figure.name }}</h1>
+        </div>
+        <div class="figure-page-head-btn">
+            <a href="{{ path('app_figure_edit', {id: figure.id}) }}"><button class="register-form-btn">Edit</button></a>
+        </div>
     </section>
     <section class="figure-page-medias">
     </section>
@@ -22,12 +35,40 @@
         <p>pas d'update</p>
         {% endif %}
     </section>
-    {# <iframe width="720" height="480" src="https://www.youtube.com/embed/vbT7tGwCRUM?list=PLFHz2csJcgk-t8ErN1BHUUxTNj45dkSqS" title="How to Create Blog Items in Symfony 6 | How to Create a Blog in Symfony | Symfony 6 for Beginners" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> #}
-
-    {# modal #}
-    <div id="uploadModal" class="uploadMediaModal hideModal">
-        <span id="modalExitBtn">x</span>
-        <p>modal open</p>
-    </div>
+    <div class="separator"></div>
+    <section class="comment-section">
+        {% if app.user %}
+        <div class="comment-input">
+        {{ form_errors(formComment) }}
+            {{ form_start(formComment) }}
+            {{ form_widget(formComment) }}
+                <button type="submit" class="register-form-btn">Commenter</button>
+            {{ form_end(formComment) }}
+        </div>
+        {% else %}
+        <p><a href="{{ path('app_login') }}">Connectez</a> vous pour laisser un commentaire !</p>
+        {% endif %}
+    </section>
+    <section>
+        {% if comments %}
+            {% for comment in comments %}
+                <article class="border border-black my-3">
+                    <section class="border-bottom border-black pt-1 pb-1" style="width:100%; heigth: 100%; display:flex; align-items:center; justify-content:start;">
+                    {# TODO: ajouter la photo de profil au user #}
+                        {# {% if comment.user.photoProfil != null  %}
+                        <img src="{{ asset(comment.author.photoProfil) }}" class="" alt="test" style="width:40px; height:40px; margin-left:10px;">
+                        {% else %}
+                        <img src="{{ asset('images/dummy.webp') }}" class="" alt="test" style="width:40px; height:40px; margin-left:10px; object-fit: cover;">
+                        {% endif %} #}
+                        <img src="{{ asset('assets/images/dummy.webp') }}" class="" alt="test" style="width:40px; height:40px; margin-left:10px; object-fit: cover;">
+                        <p style="margin-left:10px; margin-top:15px;">{{ comment.user.username }} - publié le : {{ comment.getDate|date("d/m/Y") }}</p>
+                    </section>
+                    <section class="pt-3 px-3">
+                        <p>{{ comment.content }}</p>
+                    </section>
+                </article>
+            {% endfor %}
+        {% endif %}
+    </section>
 </main>
 {% endblock %}

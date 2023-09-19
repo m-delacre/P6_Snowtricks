@@ -26,9 +26,6 @@ class MediaFormType extends AbstractType
                 ),
                 'label' => "Sélectionner l'image de bannière:"
             ])
-            // ->add('groupe')
-            // ->add('firstMedia')
-            // ->add('figure_id')
         ;
     }
 

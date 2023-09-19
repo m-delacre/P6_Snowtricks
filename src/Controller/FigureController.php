@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Figure;
 use App\Entity\Media;
 use App\Entity\MediaGroupe;
+use App\Form\CommentFormType;
 use App\Form\FigureFormType;
 use App\Form\MediaFormType;
 use App\Repository\FigureRepository;
@@ -29,13 +31,38 @@ class FigureController extends AbstractController
     }
 
     #[Route('/figure/show/{name}', name: 'app_figure')]
-    public function displayFigure(FigureRepository $figureRepository, Request $request): Response
+    public function displayFigure(FigureRepository $figureRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $dataURL = $request->getPathInfo();
         $name = substr($dataURL, strpos($dataURL, "show") + 5);
-        //dd($dataURL, $name);
+        $name = str_replace('%20', ' ', $name);
+        dd($dataURL, $name);
         $figure = $figureRepository->findOneBy(['name' => $name]);
-        return $this->render('figure/figure.html.twig', ['figure' => $figure]);
+
+        // création du formulaire de commentaire
+        $comment = new Comment();
+        $formComment = $this->createForm(CommentFormType::class, $comment);
+        $formComment->handleRequest($request);
+
+        // Envoie du formulaire de commentaire
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
+            $newComment = $formComment->getData();
+            $newComment->setDate(new DateTime());
+            $newComment->setUser($this->getUser());
+            $newComment->setFigure($figure);
+
+            $entityManager->persist($newComment);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_figure', ['name' => $figure->getName()]);
+        }
+
+        //dd($figure->getComments());
+
+        return $this->render('figure/figure.html.twig', [
+            'figure' => $figure,
+            'formComment' => $formComment->createView(),
+            'comments'=> $figure->getComments()
+        ]);
     }
 
     #[Route('/figure/create', name: 'app_figure_create')]
@@ -80,14 +107,9 @@ class FigureController extends AbstractController
     #[Route('/figure/edit/{id}', name: 'app_figure_edit')]
     public function editFigure(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
     {
+        // création du formulaire d'édition de la figure
         $figureForm = $this->createForm(FigureFormType::class, $figure);
         $figureForm->handleRequest($request);
-
-        // TODO: faire choisir le type de media vidéo ou photo et donc faire différents formulaire en fonction du media
-        $media = new Media();
-        $mediaForm = $this->createForm(MediaFormType::class, $media);
-        $mediaForm->handleRequest($request);
-        $mediaPath = $mediaForm->get('media_path')->getData();
 
         // Envoie du formulaire de la figure
         if ($figureForm->isSubmitted() && $figureForm->isValid()) {
@@ -95,6 +117,16 @@ class FigureController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('app_figure', ['name' => $figure->getName()]);
         }
+
+        // TODO: faire choisir le type de media vidéo ou photo 
+        // et donc faire différents formulaire en fonction du media
+        // pour les medias simple, bannière photo uniquement.
+        
+        // création du formulaire de modification de la bannière
+        $media = new Media();
+        $mediaForm = $this->createForm(MediaFormType::class, $media);
+        $mediaForm->handleRequest($request);
+        $mediaPath = $mediaForm->get('media_path')->getData();
 
         //  Envoie du formulaire de bannière
         if ($mediaForm->isSubmitted() && $mediaForm->isValid()) {
@@ -131,7 +163,7 @@ class FigureController extends AbstractController
         return $this->render('figure/edit_figure.html.twig', [
             'figure' => $figure,
             'figureForm' => $figureForm->createView(),
-            'mediaForm' => $mediaForm->createView()
+            'mediaForm' => $mediaForm->createView(),
         ]);
     }
 }
