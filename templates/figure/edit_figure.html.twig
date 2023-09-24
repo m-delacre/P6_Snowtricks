@@ -4,13 +4,7 @@
 
 {% block body %}
 <main class="figure-page">
-    {# OLD OLD OLD OLD OLD OLD #}
-    {# <section class="figure-page-head">
-        <h1>{{ figure.name }}</h1>
-        <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
-    </section> #}
-    {# =========================================================================================================== #}
-    {{ form_errors(figureForm) }}
+{{ form_errors(figureForm) }}
 
     {{ form_start(figureForm) }}
         <section class="figure-page-head">
@@ -30,12 +24,6 @@
                 <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
             </div>
         </section>
-    {# =========================================================================================================== #}
-
-    {# {{ form_errors(figureForm) }}
-
-    {{ form_start(figureForm) }}
-        {{ form_row(figureForm.name) }} #}
         {{ form_row(figureForm.groupe) }}
         {{ form_row(figureForm.description) }}
 

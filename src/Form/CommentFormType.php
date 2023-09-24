@@ -17,7 +17,7 @@ class CommentFormType extends AbstractType
                 'attr'=> array(
                     'class'=>'form-control mb-4',
                 ),
-                'label'=>'Votre commentaire :'
+                'label'=>'Ajouter un commentaire :'
             ])
         ;
     }

@@ -36,7 +36,7 @@ class FigureController extends AbstractController
         $dataURL = $request->getPathInfo();
         $name = substr($dataURL, strpos($dataURL, "show") + 5);
         $name = str_replace('%20', ' ', $name);
-        dd($dataURL, $name);
+        //dd($dataURL, $name);
         $figure = $figureRepository->findOneBy(['name' => $name]);
 
         // création du formulaire de commentaire
@@ -130,6 +130,8 @@ class FigureController extends AbstractController
 
         //  Envoie du formulaire de bannière
         if ($mediaForm->isSubmitted() && $mediaForm->isValid()) {
+            // dd($mediaForm);
+            // $mediaForm->getErrors();
             //dd($mediaPath, $newMediaExtension);
             $newMedia = $mediaForm->getData();
             if ($mediaPath) {

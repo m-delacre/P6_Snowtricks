@@ -157,9 +157,7 @@ class Figure
     public function getBanner(): ?Media
     {
         $medias = $this->getMedia();
-        //dd($medias);
         foreach ( $medias as $media ) {
-            //var_dump($media);
             if ( $media->isFirstMedia() ) {
                 return $media;
             }

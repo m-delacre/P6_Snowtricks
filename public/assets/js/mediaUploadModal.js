@@ -4,8 +4,9 @@ let modalExitBtn = document.getElementById("modalExitBtn");
 
 console.log('test')
 
-function displayUploadModal() {
+function displayUploadModal(e) {
   if (modal.classList.contains("hideModal")) {
+    e.preventDefault()
     modal.classList.remove("hideModal")
     modal.classList.add("displayModal");
   }
