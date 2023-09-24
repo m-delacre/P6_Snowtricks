@@ -688,3 +688,42 @@ input[type="password"]:focus {
 .displayModal {
   display: flex;
 }
+
+.edit-figure-form{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  gap: 20px;
+}
+
+.edit-figure-form button{
+  width: fit-content;
+}
+
+.edit-figure-form-row{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+
+.edit-figure-form label{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.edit-figure-form select, input[type=text]{
+  width: fit-content;
+  font-size: 16px;
+}
+
+.edit-figure-form textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  outline: none;
+  font-size: 16px;
+}

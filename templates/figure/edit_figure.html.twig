@@ -6,7 +6,7 @@
 <main class="figure-page">
 {{ form_errors(figureForm) }}
 
-    {{ form_start(figureForm) }}
+    {{ form_start(figureForm, {'attr': {'class': 'edit-figure-form'}}) }}
         <section class="figure-page-head">
             {% if figure.getBanner() == null %}
                 <a href="{{ path('app_figure', {name: figure.name})}}">
@@ -18,14 +18,14 @@
                 </div>
             {% endif %}
             <div class="figure-page-head-title">
-                {{ form_row(figureForm.name) }}
+                {{ form_row(figureForm.name, {'attr': {'class': 'edit-figure-form-row'}}) }}
             </div>
             <div class="figure-page-head-btn">
                 <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
             </div>
         </section>
-        {{ form_row(figureForm.groupe) }}
-        {{ form_row(figureForm.description) }}
+        {{ form_row(figureForm.groupe, {'attr': {'class': 'edit-figure-form-row'}}) }}
+        {{ form_row(figureForm.description, {'attr': {'class': 'edit-figure-form-row'}}) }}
 
         <button type="submit" class="register-form-btn">Modifier la figure</button>
     {{ form_end(figureForm) }}
