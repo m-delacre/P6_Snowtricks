@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Tricks{% endblock %}
+
+{% block body %}
+<main class="figures-page">
+<h1>Tous les tricks :</h1>
+{% if figures == null %}
+    <p>Pas de figures pour le moment...</p>
+    {% else %}
+    <div class="figures-page-cards">
+    {% for figure in figures %}
+        <article class="figure-card">
+            <section class="figure-card-top">
+                {% if figure.getBanner() == null %}
+                <a href="{{ path('app_figure', {slug: figure.slug})}}">
+                    <div class="figure-card-imgplaceholder"></div>
+                </a>
+                {% else %}
+                <a href="{{ path('app_figure', {slug: figure.slug})}}">
+                    <img src="{{ figure.getBanner().getMediaPath() }}"alt="logo">
+                </a>
+                {% endif %}
+            </section>
+            <section class="figure-card-bot">
+                <p><a href="{{ path('app_figure', {slug: figure.slug})}}">{{ figure.name }}</a></p>
+            </section>
+        </article>
+    {% endfor %}
+    </div>
+{% endif %}
+</main>
+{% endblock %}

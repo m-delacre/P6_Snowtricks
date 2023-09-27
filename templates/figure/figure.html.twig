@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Tricks{% endblock %}
+
+{% block body %}
+<main class="figure-page">
+    <section class="figure-page-head">
+        {% if figure.getBanner() == null %}
+            <a href="{{ path('app_figure', {slug: figure.slug})}}">
+                <div class="figure-card-imgplaceholder"></div>
+            </a>
+            {% else %}
+            <div class="figure-page-head-banner">
+                <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner">
+            </div>
+        {% endif %}
+        <div class="figure-page-head-title">
+            <h1>{{ figure.name }}</h1>
+        </div>
+        {% if app.user == figure.getUserId %}
+        <div class="figure-page-head-btn">
+            <a href="{{ path('app_figure_edit', {id: figure.id}) }}"><button class="register-form-btn">Edit</button></a>
+        </div>
+        {% endif %}
+    </section>
+    <section class="figure-page-medias">
+        {% if medias %}
+            {% for media in medias %}
+                {% if media.groupe.value == "photo" and not media.firstMedia %}
+                <div class="figure-media">
+                    <img src="/{{ media.getMediaPath() }}" alt="{{ figure.name }}-photo media" loading="lazy">
+                </div>
+                {% endif %}
+                {% if media.groupe.value == "video" %}
+                    {% if media.getMediaPath() == "" %}
+                    <img src="{{ asset('assets/images/videoNotWorking.png') }}" alt="video not working" loading="lazy">
+                    {% else %}
+                    <iframe width="450" height="250" src="{{ media.getMediaPath() }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </section>
+    <section class="figure-page-description">
+        <p>{{ figure.description }}</p>
+    </section>
+    <section class="figure-page-info">
+        <p class="figure-page-info-capsule">Date de création : {{ figure.getCreationDate|date("d/m/Y") }}</p>
+        {% if figure.getUpdateDate %}
+        <p class="figure-page-info-capsule">Dernière mise à jour : {{ figure.getUpdateDate|date("d/m/Y") }}</p>
+        {% endif %}
+        <p class="figure-page-info-capsule">{{ figure.groupe.value }}</p>
+    </section>
+    <div class="separator"></div>
+    <section class="comment-section">
+        {% if app.user %}
+        <div class="comment-input">
+        {{ form_errors(formComment) }}
+            {{ form_start(formComment, {'attr': {'class': 'comment-form'}}) }}
+            {{ form_row(formComment.content, {'attr': {'class': 'comment-form-input'}}) }}
+                <button type="submit" class="register-form-btn">Commenter</button>
+            {{ form_end(formComment) }}
+        </div>
+        {% else %}
+        <p><a href="{{ path('app_login') }}">Connectez</a> vous pour laisser un commentaire !</p>
+        {% endif %}
+    </section>
+    <div class="separator"></div>
+    <section class="all-comments-section">
+        {% if comments %}
+            {% for comment in comments %}
+                <article class="">
+                    <section class="comment-top">
+                    {# TODO: ajouter la photo de profil au user #}
+                        {# {% if comment.user.photoProfil != null  %}
+                        <img src="{{ asset(comment.author.photoProfil) }}" class="" alt="test" style="width:40px; height:40px; margin-left:10px;">
+                        {% else %}
+                        <img src="{{ asset('images/dummy.webp') }}" class="" alt="test" style="width:40px; height:40px; margin-left:10px; object-fit: cover;">
+                        {% endif %} #}
+                        <img src="{{ asset('assets/images/dummy.webp') }}" class="" alt="placeholder no profil picture" loading="lazy">
+                        <p class="comment-user-info">{{ comment.user.username }} - publié le : {{ comment.getDate|date("d/m/Y") }}</p>
+                    </section>
+                    <section class="comment-bot">
+                        <p>{{ comment.content }}</p>
+                    </section>
+                </article>
+            {% endfor %}
+        {% endif %}
+        {% if comments|length < 1 %}
+            <p>Pas encore de commentaire, soyez le premier !</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

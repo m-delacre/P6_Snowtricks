@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block body %}
+<div class="">
+    <h1>Attention !</h1>
+    <p>vous devez être connecté pour aller sur cette page.</p>
+    <button class="register-form-btn">
+        <a href=" {{ path('app_login') }} ">Se connecter</a>
+    </button>
+</div>
+{% endblock %}
