@@ -222,6 +222,7 @@ input[type="password"] {
   box-sizing: border-box;
   border-radius: 0;
   border: 3px black solid;
+  width: 400px;
 }
 
 .register-form input[type="text"]:focus,
@@ -480,10 +481,79 @@ input[type="password"]:focus {
 
 .figure-page-medias {
   width: 100%;
-  height: 300px;
-  border: 2px solid red;
+  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 15px;
+  column-gap: 15px;
   box-sizing: border-box;
   margin-top: 30px;
+}
+
+.figure-media {
+  width: 480px;
+  height: 250px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  object-fit: cover;
+  position: relative;
+}
+
+.figure-media-video {
+  width: 480px;
+  height: 250px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.figure-media-video img{
+  width: 100%;
+  height: 100%;
+}
+
+.figure-media-video span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(172, 172, 172, 0.459);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  z-index: 3;
+  font-size: 18px;
+}
+
+.figure-media-video span:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.figure-media span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(172, 172, 172, 0.459);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  z-index: 3;
+  font-size: 18px;
+}
+
+.figure-media span:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.figure-media img {
+  width: 100%;
+  height: 100%;
 }
 
 .figure-page-description {
@@ -655,21 +725,22 @@ input[type="password"]:focus {
   color: #fdfdfd;
 }
 
-.uploadMediaModal {
+.MediaModal {
   width: 700px;
   height: 300px;
   background-color: #fdfdfd;
   border: 5px solid black;
   color: black;
   position: absolute;
-  top: 30%;
+  top: 25%;
   left: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
 }
 
-.uploadMediaModal span {
+.MediaModal span {
   position: absolute;
   top: 0px;
   right: 15px;
@@ -677,7 +748,119 @@ input[type="password"]:focus {
   font-weight: 800;
 }
 
-.uploadMediaModal span:hover {
+.MediaModal span:hover {
+  cursor: pointer;
+}
+
+#videoHelpBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  border-radius: 50px;
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+  font-size: 18px;
+}
+
+.imgVideoHelper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#videoHelpBtn:hover + .imgVideoHelper{
+  display: block;
+}
+
+.addMediaBtn {
+  background-color: #fdfdfd;
+  border: 2px solid black;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 15px 10px 15px;
+}
+
+.edit-figure-form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  gap: 20px;
+}
+
+.edit-figure-form button {
+  width: fit-content;
+}
+
+.edit-figure-form-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+
+.edit-figure-form label {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.edit-figure-form select,
+input[type="text"] {
+  width: fit-content;
+  font-size: 16px;
+}
+
+.edit-figure-form textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 200px;
+  outline: none;
+  font-size: 16px;
+}
+
+.edit-page-medias{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+.edit-page-media {
+  width: 250px;
+  height: 250px;
+}
+
+.add-media-btn {
+  background-color: black;
+  color: #fdfdfd;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-media-btn:hover {
+  cursor: pointer;
+}
+
+.addMediaFirstModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addMediaFirstModal p:hover {
   cursor: pointer;
 }
 
@@ -689,41 +872,34 @@ input[type="password"]:focus {
   display: flex;
 }
 
-.edit-figure-form{
-  box-sizing: border-box;
+.addVideo-form {
+  width: fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: fit-content;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
-.edit-figure-form button{
+.addVideo-form-inputgroup {
   width: fit-content;
-}
-
-.edit-figure-form-row{
-  box-sizing: border-box;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: fit-content;
+  gap: 20px;
 }
 
-.edit-figure-form label{
-  font-size: 20px;
-  font-weight: 600;
+.addVideo-form input[type=text]{
+  width: 450px;
+  height: 30px;
 }
 
-.edit-figure-form select, input[type=text]{
-  width: fit-content;
-  font-size: 16px;
+.addVideo-form label{
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.edit-figure-form textarea {
-  width: 100%;
-  max-width: 100%;
-  min-height: 200px;
-  outline: none;
-  font-size: 16px;
+.addVideo-form button{
+  width: 150px;
 }

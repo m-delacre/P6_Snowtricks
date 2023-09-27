@@ -41,6 +41,9 @@ class Figure
     #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
@@ -191,6 +194,18 @@ class Figure
                 $comment->setFigure(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

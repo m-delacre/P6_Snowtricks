@@ -14,7 +14,7 @@
                 </a>
                 {% else %}
                 <div class="figure-page-head-banner">
-                    <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner">
+                    <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner" loading="lazy">
                 </div>
             {% endif %}
             <div class="figure-page-head-title">
@@ -24,22 +24,92 @@
                 <button class="register-form-btn editBannerBtn" id="editMediaBtn">Changer de bannière</button>
             </div>
         </section>
+        <section class="edit-page-medias">
+            {% if medias %}
+                {% for media in medias %}
+                    {% if media.groupe.value == "photo" and not media.firstMedia %}
+                    <div class="figure-media">
+                        <img src="/{{ media.getMediaPath() }}" alt="photo media" loading="lazy">
+                        <a href="{{ path('app_media_delete', {id: media.id}) }}">
+                                <span>🗑️</span>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if media.groupe.value == "video" %}
+                        {% if media.getMediaPath() == "" %}
+                        <div class="figure-media-video">
+                            <img src="{{ asset('assets/images/videoNotWorking.png') }}" alt="video not working" loading="lazy">
+                            <a href="{{ path('app_media_delete', {id: media.id}) }}">
+                                <span>🗑️</span>
+                            </a>
+                        </div>
+                        {% else %}
+                        <div class="figure-media-video">
+                            <iframe width="480" height="250" src="{{ media.getMediaPath() }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <a href="{{ path('app_media_delete', {id: media.id}) }}">
+                                <span>🗑️</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+             {% endif %}
+             <div class="edit-page-media add-media-btn" id="addMediaBtn">
+                <span>+</span>
+            </div>
+        </section>
         {{ form_row(figureForm.groupe, {'attr': {'class': 'edit-figure-form-row'}}) }}
         {{ form_row(figureForm.description, {'attr': {'class': 'edit-figure-form-row'}}) }}
 
         <button type="submit" class="register-form-btn">Modifier la figure</button>
     {{ form_end(figureForm) }}
 
-    {# modal #}
-    <div id="uploadModal" class="uploadMediaModal hideModal">
-        <span id="modalExitBtn">x</span>
-        {{ form_errors(mediaForm) }}
+    {# modal banner #}
+    <div id="uploadModal" class="MediaModal hideModal">
+        <span id="UploadModalExitBtn">x</span>
+        {{ form_errors(bannerForm) }}
 
-        {{ form_start(mediaForm, {'attr': {'class': 'register-form'}}) }}
-            {{ form_row(mediaForm.media_path, {'attr': {'class': 'register-form-inputgroup'}}) }}
+        {{ form_start(bannerForm, {'attr': {'class': 'register-form'}}) }}
+            {{ form_row(bannerForm.media_path, {'attr': {'class': 'register-form-inputgroup'}}) }}
             <button type="submit" class="register-form-btn">Enregistrer</button>
-        {{ form_end(mediaForm) }}
+        {{ form_end(bannerForm) }}
     </div>
+
+    {# modal ajout media choix #}
+    <div id="addMediaFirstModal" class="MediaModal hideModal addMediaFirstModal">
+        <span id="addMediaFirstModalExitBtn">x</span>
+        <p id="addMediaPhotoModalBtn" class="addMediaBtn">Ajouter une photo</p>
+        <p id="addMediaVideoModalBtn" class="addMediaBtn">Ajouter une vidéo</p>
+    </div>
+
+    {# modal ajout media photo #}
+    <div id="addMediaPhotoModal" class="MediaModal hideModal">
+        <span id="addMediaPhotoModalExitBtn">x</span>
+        {{ form_errors(photoForm) }}
+
+        {{ form_start(photoForm, {'attr': {'class': 'register-form'}}) }}
+            {{ form_row(photoForm.media_path, {'attr': {'class': 'register-form-inputgroup'}}) }}
+            <button type="submit" class="register-form-btn">Ajouter</button>
+        {{ form_end(photoForm) }}
+    </div>
+
+    {# modal ajout media video #}
+    <div id="addMediaVideoModal" class="MediaModal hideModal">
+        <span id="addMediaVideoModalExitBtn">x</span>
+        <span id="videoHelpBtn">❔</span>
+        <img src="{{ asset('assets/images/videoHelper.png') }}" alt="video helper" class="imgVideoHelper">
+        {{ form_errors(videoForm) }}
+
+        {{ form_start(videoForm, {'attr': {'class': 'addVideo-form'}}) }}
+            {{ form_label(videoForm.media_path, "Le lien d'intégration de la vidéo (Youtube uniquement) :", {
+                'label_attr': {'class': 'addVideo-form-inputgroup margin'}
+            }) }}
+            {{ form_widget(videoForm) }}
+            {# {{ form_row(videoForm.media_path, {'attr': {'class': 'addVideo-form-inputgroup'}}) }} #}
+            <button type="submit" class="register-form-btn">Ajouter</button>
+        {{ form_end(videoForm) }}
+    </div>
+
 </main>
 {% endblock %}
 

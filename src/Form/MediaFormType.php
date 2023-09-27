@@ -17,7 +17,7 @@ class MediaFormType extends AbstractType
             ->add('media_path', FileType::class, [
                 'required' => true,
                 'constraints' => [new Image([
-                    'extensions' => ['jpeg', 'jpg', 'png'],
+                    'extensions' => ['jpeg', 'jpg', 'png', 'webp'],
                     'extensionsMessage' => 'Merci de télécharger une image au bon format (png,jpeg,jpg).'
                 ])],
                 'mapped' => false,
