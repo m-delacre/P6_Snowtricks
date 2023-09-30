@@ -44,6 +44,11 @@ class FigureController extends AbstractController
         // $name = urldecode($name);
         //dd("dans l'URL : $dataURL", " resultat après sluger: $name");
         $figure = $figureRepository->findOneBy(['slug' => $slug]);
+
+        if (!$figure) {
+            return $this->render('figure/not_found.html.twig');
+        }
+
         // création du formulaire de commentaire
         $comment = new Comment();
         $formComment = $this->createForm(CommentFormType::class, $comment);

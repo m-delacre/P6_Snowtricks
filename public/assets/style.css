@@ -903,3 +903,29 @@ input[type="text"] {
 .addVideo-form button{
   width: 150px;
 }
+
+/*  figure not found page */
+
+.figure-not-found{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 100px 50px 100px 50px;
+}
+
+.figure-not-found a{
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.figure-not-found a:hover{
+  color: red;
+}
+
+.figure-not-found p{
+  font-size: 30px;
+}

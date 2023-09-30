@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Figure Not Found{% endblock %}
+
+{% block body %}
+<main class="figure-not-found">
+    <h1>😕 Nous ne trouvons pas cette figure ou elle n'existe pas. 😕</h1>
+    <p>Nous avons tout un tas d'autres figures <a href="{{ path('app_figures') }}">ici</a></p>
+</main>
+{% endblock %}
