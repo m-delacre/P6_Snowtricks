@@ -63,7 +63,7 @@ class FigureController extends AbstractController
 
             $entityManager->persist($newComment);
             $entityManager->flush();
-            return $this->redirectToRoute('app_figure', ['name' => $figure->getName()]);
+            return $this->redirectToRoute('app_figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/figure.html.twig', [
@@ -132,7 +132,7 @@ class FigureController extends AbstractController
         if ($figureForm->isSubmitted() && $figureForm->isValid()) {
             $figure->setUpdateDate(new DateTime());
             $entityManager->flush();
-            return $this->redirectToRoute('app_figure', ['name' => $figure->getName()]);
+            return $this->redirectToRoute('app_figure', ['slug' => $figure->getSlug()]);
         }
 
         //création du formulaire d'ajout d'une video
