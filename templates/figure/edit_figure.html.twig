@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les Tricks{% endblock %}
+{% block title %}Modification {{ figure.name }}{% endblock %}
 
 {% block body %}
 <main class="figure-page">
@@ -44,7 +44,7 @@
                         <a href="{{ path('app_media_delete', {id: media.id}) }}">
                             <span>🗑️</span>
                         </a>
-                        <a href="{{ path('app_media_update', {id: media.id}) }}">
+                        <a href="{{ path('app_media_update_photo', {id: media.id}) }}">
                             <span>✏️</span>
                         </a>
                     </div>
@@ -58,7 +58,7 @@
                             <a href="{{ path('app_media_delete', {id: media.id}) }}">
                                 <span>🗑️</span>
                             </a>
-                            <a href="{{ path('app_media_update', {id: media.id}) }}">
+                            <a href="{{ path('app_media_update_video', {id: media.id}) }}">
                                 <span>✏️</span>
                             </a>
                         </div>
@@ -70,7 +70,7 @@
                             <a href="{{ path('app_media_delete', {id: media.id}) }}">
                                 <span>🗑️</span>
                             </a>
-                            <a href="{{ path('app_media_update', {id: media.id}) }}">
+                            <a href="{{ path('app_media_update_video', {id: media.id}) }}">
                                 <span>✏️</span>
                             </a>
                         </div>
@@ -89,17 +89,31 @@
         {{ form_row(figureForm.groupe, {'attr': {'class': 'edit-figure-form-row'}}) }}
         {{ form_label(figureForm.description, "La description de la figure :", {
                     'label_attr': {'class': 'addVideo-form-inputgroup margin'}
-                }) }}
+        }) }}
         {{ form_row(figureForm.description, {'attr': {'class': 'edit-figure-form-row'}}) }}
 
-        <button type="submit" class="register-form-btn modif-figure-btn">Modifier la figure</button>
+        <div class="edit-figure-bottom-btn">
+            <button type="submit" class="register-form-btn modif-figure-btn">Modifier la figure</button>
+            <p class="register-form-btn delete-figure-btn" id="deleteFigureModalBtn">Supprimer la figure</p>
+        </div>
+        
     {{ form_end(figureForm) }}
-
+    
     {# modal ajout media choix #}
     <div id="addMediaFirstModal" class="MediaModal hideModal addMediaFirstModal">
         <span id="addMediaFirstModalExitBtn">x</span>
         <p id="addMediaPhotoModalBtn" class="addMediaBtn"><a href="{{ path('app_media_create_photo', {id: figure.id} )}}">Ajouter une photo</a></p>
         <p id="addMediaVideoModalBtn" class="addMediaBtn"><a href="{{ path('app_media_create_video', {id: figure.id} )}}">Ajouter une vidéo</a></p>
+    </div>
+
+    <div id="deleteFigureModal" class="MediaModal deleteFigureModal hideModal">
+        <span id="deleteFigureModalExitBtn">x</span>
+        <p>voulez vous vraiment supprimer cette figure ?</p>
+        <div class="deleteFigureModal-bottom">
+            <p class="addMediaBtn delete-figure-btn"><a href="{{ path('app_figure_delete', {id: figure.id}) }}">Oui</a></p>
+            <p id="deleteFigureModalNoBtn" class="addMediaBtn">Non</p>
+        </div>
+        
     </div>
 
 </main>

@@ -750,11 +750,11 @@ input[type="password"]:focus {
 
 .addMediaBtn {
   background-color: #fdfdfd;
-  border: 2px solid black;
+  border: 3px solid black;
   color: black;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
-  padding: 10px 15px 10px 15px;
+  padding: 10px 20px 10px 20px;
 }
 
 .edit-figure-form {
@@ -827,7 +827,34 @@ input[type="text"] {
 }
 
 .modif-figure-btn{
+  height: fit-content;
+}
+
+.delete-figure-btn{
+  width: fit-content;
+} 
+
+#deleteFigureModalNoBtn:hover{
+  cursor: pointer;
+  background-color: rgb(0, 140, 255);
+  color: white;
+}
+
+.delete-figure-btn:hover{
+  background-color: red;
+  color: white;
+  cursor: pointer;
+} 
+
+.edit-figure-bottom-btn {
+  width: fit-content;
+  height: fit-content;
   margin-top: 30px;
+  border: 2px solide red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .add-media-btn {
@@ -894,6 +921,18 @@ input[type="text"] {
 
 .addVideo-form button{
   width: 150px;
+}
+
+.deleteFigureModal{
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 600;
+  top: 750px;
+}
+
+.deleteFigureModal-bottom{
+  display: flex;
+  gap: 50px;
 }
 
 /*  figure not found page */
