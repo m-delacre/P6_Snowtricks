@@ -366,7 +366,7 @@ input[type="password"]:focus {
   width: 100%;
   height: fit-content;
   min-height: 90vh;
-  padding: 50px 200px 50px 200px;
+  padding: 50px 300px 50px 300px;
   box-sizing: border-box;
 }
 
@@ -381,7 +381,7 @@ input[type="password"]:focus {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 50px;
 }
 
 .figure-card {
@@ -402,7 +402,8 @@ input[type="password"]:focus {
 }
 
 .figure-card-imgplaceholder {
-  background-color: black;
+  background-image: url('../assets/images/Snowtricks_Logo.png');
+  opacity: 0.5;
   width: 100%;
   height: 100%;
   border-radius: 15px 15px 0px 0px;
@@ -436,9 +437,18 @@ input[type="password"]:focus {
   width: 100%;
   height: fit-content;
   min-height: 90vh;
-  padding: 50px 200px 50px 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 400px 50px 400px;
   box-sizing: border-box;
   position: relative;
+}
+
+.figure-banner-placeholder{
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/Snowtricks_Logo.png');
+  opacity: 0.5;
 }
 
 .figure-page-head {
@@ -466,6 +476,7 @@ input[type="password"]:focus {
   height: 100%;
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 30px;
@@ -475,24 +486,33 @@ input[type="password"]:focus {
 
 .figure-page-head-btn {
   position: absolute;
-  top: 10px;
+  top:  10px;
   right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
 }
 
 .figure-page-medias {
   width: 100%;
   height: fit-content;
   display: flex;
-  flex-flow: row wrap;
-  row-gap: 15px;
-  column-gap: 15px;
+  flex-wrap: wrap;
+  row-gap: 25px;
+  column-gap: 25px;
   box-sizing: border-box;
   margin-top: 30px;
 }
 
 .figure-media {
-  width: 480px;
-  height: 250px;
+  width: 350px;
+  height: 200px;
   box-sizing: border-box;
   border: 2px solid black;
   object-fit: cover;
@@ -500,53 +520,40 @@ input[type="password"]:focus {
 }
 
 .figure-media-video {
-  width: 480px;
-  height: 250px;
+  width: 350px;
+  height: 200px;
   box-sizing: border-box;
   position: relative;
 }
 
 .figure-media-video img{
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 200px;
 }
 
-.figure-media-video span {
+.figure-media-tool{
+  box-sizing: border-box;
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(172, 172, 172, 0.459);
+  width: fit-content;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.4;
+  gap: 3px;
   z-index: 3;
-  font-size: 18px;
+  font-size: 15px;
+  
 }
 
-.figure-media-video span:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-
-.figure-media span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(172, 172, 172, 0.459);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.figure-media-tool span{
+  background-color: rgba(87, 87, 87, 0.637);
+  padding: 10px;
   opacity: 0.4;
-  z-index: 3;
-  font-size: 18px;
 }
 
-.figure-media span:hover {
+.figure-media-tool span:hover {
   cursor: pointer;
   opacity: 1;
 }
@@ -705,24 +712,13 @@ input[type="password"]:focus {
 }
 
 /*  edit figure page    */
-
-.editBannerBtn {
+.edit-figure-page-banner-tool{
+  box-sizing: border-box;
+  display: flex;
+  gap: 15px;
   position: absolute;
-  top: 5px;
-  right: 5px;
-  z-index: 4;
-  width: fit-content;
-  border: 3px solid black;
-  padding: 10px 20px 10px 20px;
-  font-size: 20px;
-  font-weight: 600;
-  min-width: 250px;
-}
-
-.editBannerBtn:hover {
-  background-color: black;
-  cursor: pointer;
-  color: #fdfdfd;
+  top: 10px;
+  right: 10px;
 }
 
 .MediaModal {
@@ -752,29 +748,6 @@ input[type="password"]:focus {
   cursor: pointer;
 }
 
-#videoHelpBtn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: black;
-  border-radius: 50px;
-  padding: 5px;
-  width: fit-content;
-  height: fit-content;
-  font-size: 18px;
-}
-
-.imgVideoHelper {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-#videoHelpBtn:hover + .imgVideoHelper{
-  display: block;
-}
-
 .addMediaBtn {
   background-color: #fdfdfd;
   border: 2px solid black;
@@ -790,7 +763,8 @@ input[type="password"]:focus {
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  gap: 20px;
+  gap: 0px;
+  font-family: "Roboto", sans-serif;
 }
 
 .edit-figure-form button {
@@ -803,17 +777,26 @@ input[type="password"]:focus {
   flex-direction: column;
   width: 100%;
   height: fit-content;
+  font-size: 25px;
+  font-family: "Roboto", sans-serif;
 }
 
 .edit-figure-form label {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 40px;
 }
 
 .edit-figure-form select,
 input[type="text"] {
   width: fit-content;
-  font-size: 16px;
+  height: fit-content;
+  font-size: 23px;
+  outline: none;
+  border: 3px solid black;
+  padding: 10px;
+  font-weight: 600;
 }
 
 .edit-figure-form textarea {
@@ -821,11 +804,14 @@ input[type="text"] {
   max-width: 100%;
   min-height: 200px;
   outline: none;
-  font-size: 16px;
+  font-size: 20px;
+  border: 3px solid black;
+  font-family: "Roboto", sans-serif;
+  padding: 15px;
 }
 
 .edit-page-medias{
-  width: 100%;
+  width: 100% / 3;
   height: fit-content;
   display: flex;
   flex-flow: row wrap;
@@ -836,8 +822,12 @@ input[type="text"] {
 }
 
 .edit-page-media {
-  width: 250px;
+  width: auto;
   height: 250px;
+}
+
+.modif-figure-btn{
+  margin-top: 30px;
 }
 
 .add-media-btn {
@@ -847,6 +837,8 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 200px;
+  height: 200px;
 }
 
 .add-media-btn:hover {
@@ -1027,4 +1019,76 @@ input[type="text"] {
 
 .passwordChange-page-form button{
   width: fit-content;
+}
+
+/*  can't modify this figure page */
+
+.cantModifyFigure-page{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px 500px 50px 500px;
+  font-size: 30px;
+}
+
+.cantModifyFigure-page a{
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/*  can't modify this figure page */
+
+.connexionRequired-page{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px 500px 50px 500px;
+  font-size: 30px;
+}
+
+.connexionRequired-page h1{
+  margin-bottom: 0;
+}
+
+/*  add photo media page  */
+
+.add-photo-media-page{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 50px 500px 50px 500px;
+  font-size: 30px;
+}
+
+.add-media-form{
+  border: 3px solid black;
+  padding: 15px;
+  font-size: 30px;
+}
+
+.addPhotoForm{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addPhotoForm button{
+  width: fit-content;
+  height: fit-content;
+}
+
+.addPhotoForm-label{
+  margin-bottom: -20px;
 }

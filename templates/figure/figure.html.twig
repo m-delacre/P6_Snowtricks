@@ -6,9 +6,7 @@
 <main class="figure-page">
     <section class="figure-page-head">
         {% if figure.getBanner() == null %}
-            <a href="{{ path('app_figure', {slug: figure.slug})}}">
-                <div class="figure-card-imgplaceholder"></div>
-            </a>
+            <div class="figure-banner-placeholder"></div>
             {% else %}
             <div class="figure-page-head-banner">
                 <img src="/{{ figure.getBanner().getMediaPath() }}" alt="banner">
@@ -19,7 +17,7 @@
         </div>
         {% if app.user == figure.getUserId %}
         <div class="figure-page-head-btn">
-            <a href="{{ path('app_figure_edit', {id: figure.id}) }}"><button class="register-form-btn">Edit</button></a>
+            <a href="{{ path('app_figure_edit', {id: figure.id}) }}"><button class="register-form-btn">Modifier</button></a>
         </div>
         {% endif %}
     </section>
@@ -33,9 +31,13 @@
                 {% endif %}
                 {% if media.groupe.value == "video" %}
                     {% if media.getMediaPath() == "" %}
-                    <img src="{{ asset('assets/images/videoNotWorking.png') }}" alt="video not working" loading="lazy">
+                    <div class="figure-media-video">
+                        <img src="{{ asset('assets/images/videoNotWorking.png') }}" alt="video not working" loading="lazy">
+                    </div>
                     {% else %}
-                    <iframe width="450" height="250" src="{{ media.getMediaPath() }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="figure-media-video">
+                        <iframe width="350" height="200" src="https://www.youtube.com/embed/{{ media.getMediaPath() }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                     {% endif %}
                 {% endif %}
             {% endfor %}
