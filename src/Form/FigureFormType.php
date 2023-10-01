@@ -20,19 +20,19 @@ class FigureFormType extends AbstractType
                 'attr' => array(
                     'class'=>''
                 ),
-                'label'=>'Nom de la figure :'
+                'label'=> false
             ])
             ->add('description', TextareaType::class, [
                 'attr' => array(
                     'class'=>''
                 ),
-                'label'=>'Description de la figure :'
+                'label'=> false
             ])
             ->add('groupe', EnumType::class, [
                 'attr' => array(
                     'class'=>''
                 ),
-                'label'=>'Groupe de figure :',
+                'label'=> false,
                 'class' => FigureGroupe::class,
                 'choice_label' => fn ($choice) => match ($choice) {
                     FigureGroupe::slides => 'slides',

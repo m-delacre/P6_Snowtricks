@@ -25,7 +25,7 @@ class MediaFormType extends AbstractType
                     'class' => '',
                     'accept' => 'image/*'
                 ),
-                'label' => "Sélectionner l'image de bannière:"
+                'label' => false
             ])
         ;
     }

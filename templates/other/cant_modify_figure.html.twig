@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur{% endblock %}
+
+{% block body %}
+<main class="cantModifyFigure-page">
+    <h1>Attention !</h1>
+    <p>vous ne pouvez pas modifier les figure des autres.</p>
+    <p>Retourner à <a href=" {{ path('app_home') }} ">l'accueil </a>
+</main>
+{% endblock %}

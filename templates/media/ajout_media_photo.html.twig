@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une photo{% endblock %}
+{% block stylesheets %}
+<link href="../../../assets/style.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<main class="add-photo-media-page">
+    <div class="add-media-form">
+        {{ form_errors(photoForm) }}
+
+        {{ form_start(photoForm, {'attr': {'class': 'addPhotoForm'}}) }}
+            {{ form_label(photoForm.media_path, "Choisissez l'image que vous voulez ajouter :", {
+                'label_attr': {'class': 'addPhotoForm-label'}
+            }) }}
+            {{ form_row(photoForm.media_path, {'attr': {'class': 'addPhotoForm-row'}}) }}
+            <button type="submit" class="register-form-btn">Ajouter</button>
+        {{ form_end(photoForm) }}
+    </div>
+
+</main>
+{% endblock %}
