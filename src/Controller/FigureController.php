@@ -110,7 +110,7 @@ class FigureController extends AbstractController
             $entityManager->flush();
 
             //redirection vers la home pages
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_figures');
         }
 
         return $this->render('figure/create.html.twig', [
@@ -137,5 +137,36 @@ class FigureController extends AbstractController
             'medias' => $figure->getMedia(),
             'figureForm' => $figureForm->createView()
         ]);
+    }
+
+    #[Route('/figure/delete/{id}', name: 'app_figure_delete')]
+    public function deleteFigure(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $figureMedias = $figure->getMedia();
+
+        if ($figureMedias->count() > 0) {
+            foreach ($figureMedias as $media) {
+                if ($media->getGroupe() == MediaGroupe::photo) {
+                    unlink($media->getMediaPath());
+                }
+
+                $entityManager->remove($media);
+                $entityManager->flush();
+            }
+        }
+
+        $figureComments = $figure->getComments();
+
+        if ($figureComments->count() > 0) {
+            foreach ($figureComments as $comment) {
+                $entityManager->remove($comment);
+                $entityManager->flush();
+            }
+        }
+
+        $entityManager->remove($figure);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_figures');
     }
 }

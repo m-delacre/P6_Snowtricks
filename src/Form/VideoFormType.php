@@ -16,7 +16,7 @@ class VideoFormType extends AbstractType
             ->add('media_path', TextType::class, [
                 'attr' => array(
                     'class'=>'',
-                    'placeholder'=>'<iframe width="450" height="250" src="https://www.youtube.com/...'
+                    'placeholder'=>'https://youtu.be/k6aOWf0LDcQ'
                 ),
                 'label' => false,
             ])

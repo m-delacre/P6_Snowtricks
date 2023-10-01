@@ -6,7 +6,6 @@ let addMediaFirstModalExitBtn = document.getElementById("addMediaFirstModalExitB
 function displayAddMediaFirstModal(e) {
   if (addMediaFirstModal.classList.contains("hideModal")) {
     e.preventDefault()
-    console.log('test')
     addMediaFirstModal.classList.remove("hideModal");
     addMediaFirstModal.classList.add("displayModal");
   }
@@ -19,3 +18,27 @@ function hideAddMediaFirstModal() {
 
 addMediaFirstModalBtn.addEventListener("click", displayAddMediaFirstModal);
 addMediaFirstModalExitBtn.addEventListener("click", hideAddMediaFirstModal);
+
+//delete figure modal
+
+let deleteFigureModalBtn = document.getElementById("deleteFigureModalBtn");
+let deleteFigureModal = document.getElementById("deleteFigureModal");
+let deleteFigureModalExitBtn = document.getElementById("deleteFigureModalExitBtn");
+let deleteFigureModalNoBtn = document.getElementById("deleteFigureModalNoBtn");
+
+function displayDeleteFigureModal(e) {
+  if (deleteFigureModal.classList.contains("hideModal")) {
+    e.preventDefault()
+    deleteFigureModal.classList.remove("hideModal");
+    deleteFigureModal.classList.add("displayModal");
+  }
+}
+
+function hideDeleteFigureModal() {
+  deleteFigureModal.classList.remove("displayModal");
+  deleteFigureModal.classList.add("hideModal");
+}
+
+deleteFigureModalBtn.addEventListener("click", displayDeleteFigureModal);
+deleteFigureModalExitBtn.addEventListener("click", hideDeleteFigureModal);
+deleteFigureModalNoBtn.addEventListener("click", hideDeleteFigureModal);

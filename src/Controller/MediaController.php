@@ -193,16 +193,16 @@ class MediaController extends AbstractController
         ]);
     }
 
-    #[Route('/media/update/video/{id}', name: 'app_media_update')]
+    #[Route('/media/update/video/{id}', name: 'app_media_update_video')]
     public function updateMediaVideo(Media $media, Request $request, EntityManagerInterface $entityManager): Response
     {
         $figure = $media->getFigure();
 
-        // création du formulaire d'édition de la figure
+        // création du formulaire d'édition de la video
         $videoForm = $this->createForm(VideoFormType::class, $media);
         $videoForm->handleRequest($request);
 
-        // Envoie du formulaire de la figure
+        // Envoie du formulaire de la video
         if ($videoForm->isSubmitted() && $videoForm->isValid()) {
             $getLien = $videoForm->getData('media_path');
             $newLien = substr($getLien->getMediaPath(), 17);
@@ -213,6 +213,45 @@ class MediaController extends AbstractController
 
         return $this->render('media/ajout_media_video.html.twig', [
             'videoForm' => $videoForm->createView()
+        ]);
+    }
+
+    #[Route('/media/update/photo/{id}', name: 'app_media_update_photo')]
+    public function updateMediaPhoto(Media $media, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $figure = $media->getFigure();
+
+        // création du formulaire d'édition de la photo
+        $photoForm = $this->createForm(MediaFormType::class, $media);
+        $photoForm->handleRequest($request);
+        $photoPath = $photoForm->get('media_path')->getData();
+
+        if ($photoForm->isSubmitted() && $photoForm->isValid()) {
+            if ($photoPath) {
+                //suppression de l'ancienne photo sur le serveur
+                if ($media->getMediaPath()) {
+                    unlink($media->getMediaPath());
+                }
+                $newFileName = uniqid() . '.' . $photoPath->guessExtension();
+                try {
+                    $photoPath->move(
+                        $this->getParameter('kernel.project_dir') . '/public/uploads/tricksPhoto/',
+                        $newFileName
+                    );
+                } catch (FileException $e) {
+                    return new Response($e->getMessage());
+                }
+                $media->setMediaPath('uploads/tricksPhoto/' . $newFileName);
+
+                $entityManager->persist($media);
+                $entityManager->flush();
+                
+                return $this->redirectToRoute('app_figure_edit', ['id' => $figure->getId()]);
+            }
+        }
+
+        return $this->render('media/ajout_media_photo.html.twig', [
+            'photoForm' => $photoForm->createView(),
         ]);
     }
 

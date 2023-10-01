@@ -13,12 +13,24 @@
 
     {{ form_errors(form) }}
 
-    {{ form_start(form, {'attr': {'class': 'create-figure-form'}}) }}
+    {{ form_start(form, {'attr': {'class': 'edit-figure-form'}}) }}
+
+        {{ form_label(form.name, "Le nom de la figure :", {
+                    'label_attr': {'class': 'addVideo-form-inputgroup margin'}
+        }) }}
         {{ form_row(form.name, {'attr': {'class': 'create-figure-form-row'}}) }}
+
+        {{ form_label(form.groupe, "La description de la figure :", {
+                    'label_attr': {'class': 'addVideo-form-inputgroup margin'}
+        }) }}
         {{ form_row(form.groupe, {'attr': {'class': 'create-figure-form-row'}}) }}
+
+        {{ form_label(form.description, "La description de la figure :", {
+                    'label_attr': {'class': 'addVideo-form-inputgroup margin'}
+        }) }}
         {{ form_row(form.description, {'attr': {'class': 'create-figure-form-row'}}) }}
 
-        <button type="submit" class="register-form-btn">Créer la figure</button>
+        <button type="submit" class="register-form-btn edit-figure-bottom-btn">Créer la figure</button>
     {{ form_end(form) }}
 </main>
 {% endblock %}
