@@ -17,12 +17,51 @@ use App\Repository\FigureRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FigureController extends AbstractController
 {
+
+    #[Route('/api/figures/{offset}')]
+    public function getFiguresFrom($offset, EntityManagerInterface $em): JsonResponse
+    {
+        $start = (int)$offset;
+        $qb = $em->createQueryBuilder();
+
+        $qb->add('select','f')
+            ->add('from','App\Entity\Figure f')
+            ->add('orderBy','f.id ASC')
+            ->setFirstResult($start)
+            ->setMaxResults(3);
+
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+
+        $data = [];
+        $lenght = count($result);
+
+        for ($i = 0; $i < $lenght; $i++) {
+            $newFigure= [
+                "name" => $result[$i]->getName(),
+                "slug" => $result[$i]->getSlug()
+            ];
+
+            if ($result[$i]->getBanner() === null){
+                $newFigure['media_path'] = '';
+            } else {
+                $newFigure['media_path'] = $result[$i]->getBanner()->getMediaPath();
+            }
+
+            array_push($data, $newFigure);
+        }
+
+        //dd($result,$data);
+        return $this->json($data);
+    }
+
     #[Route('/figures', name: 'app_figures')]
     public function displayFigures(FigureRepository $figureRepository): Response
     {
