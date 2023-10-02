@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="home-welcome">
+<section class="home-welcome" id="home-welcome">
     <div class="home-welcome-content-img">
         <img src="{{ asset('assets/images/snowboard_illustration.jpg') }}" alt="snowboard illustration">
     </div>
@@ -15,10 +15,17 @@
     <a class="home-welcome-arrow" href="#figures">⬇️</a>
     <img id="home_paper_deco" src="{{ asset('assets/images/deco/papier.png') }}" alt="paper_decoration">
     <img id="home_paper_deco2" src="{{ asset('assets/images/deco/papier.png') }}" alt="paper_decoration">
-</div>
+</section>
 <div class="home-figures" id="figures">
     <h1>Tous les tricks :</h1>
-    <h1>Tous les tricks :</h1>
+    <section class="home-cards" id="home-cards">
+    </section>
+    <button class="loadMore-btn" id="loadMoreBtn">Charger Plus</button>
+    <a class="home-welcome-arrowUp" href="#home-logo">⬆️</a>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+<script src=" {{ asset('assets/js/homeFetchCards.js') }}" defer></script>
 {% endblock %}
