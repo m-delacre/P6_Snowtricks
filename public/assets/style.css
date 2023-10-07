@@ -747,6 +747,26 @@ input[type="password"]:focus {
   overflow-wrap: break-word;
 }
 
+.loadComment-btn{
+  display: block;
+  border: 3px solid black;
+  background-color: #fdfdfd;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 15px 10px 15px;
+  width: fit-content;
+  margin-top: 50px;
+  align-self: center;
+}
+
+.loadComment-btn:hover{
+  cursor: pointer;
+}
+
+.hide-loadComment-btn {
+  display: none;
+}
+
 /*  edit figure page    */
 .edit-figure-page-banner-tool{
   box-sizing: border-box;

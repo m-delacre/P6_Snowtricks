@@ -2,7 +2,7 @@ let loadMoreBtn = document.getElementById("loadMoreBtn");
 let homeCardsSection = document.getElementById("home-cards");
 let offset = 0;
 
-data = [];
+let data = [];
 
 async function getCards() {
     let r = await fetch(`https://127.0.0.1:8000/api/figures/${offset}`, {
