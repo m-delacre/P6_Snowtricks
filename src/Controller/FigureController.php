@@ -7,19 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Figure;
-use App\Entity\Media;
 use App\Entity\MediaGroupe;
 use App\Form\CommentFormType;
 use App\Form\FigureFormType;
-use App\Form\MediaFormType;
-use App\Form\VideoFormType;
 use App\Repository\FigureRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FigureController extends AbstractController

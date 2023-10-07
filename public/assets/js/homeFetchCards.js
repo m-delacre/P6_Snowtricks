@@ -17,7 +17,7 @@ async function getCards() {
 }
 
 async function displayCards() {
-    getData = getCards();
+    let getData = getCards();
     const data = Array.from(await getData);
 
     if (data.length > 0) {
