@@ -21,7 +21,10 @@
         </div>
         {% endif %}
     </section>
-    <section class="figure-page-medias">
+    <div class="showMediaBtn" id="showPicture">
+        <p>Voir les medias</p>
+    </div>
+    <section class="figure-page-medias" id="figuresMedias">
         {% if medias %}
             {% for media in medias %}
                 {% if media.groupe.value == "photo" and not media.firstMedia %}
@@ -73,10 +76,11 @@
             <p>Pas encore de commentaire, soyez le premier !</p>
         {% endif %}
     </section>
-    <button class="loadComment-btn" id="loadCommentBtn">Charger Plus</button>
+    <button class="loadComment-btn" id="loadCommentBtn">voir plus</button>
 </main>
 {% endblock %}
 
 {% block javascripts %}
 <script src=" {{ asset('assets/js/loadComment.js') }}" defer></script>
+<script src=" {{ asset('assets/js/showMedia.js') }}" defer></script>
 {% endblock %}

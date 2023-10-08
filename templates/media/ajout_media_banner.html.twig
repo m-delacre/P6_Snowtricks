@@ -3,22 +3,11 @@
 {% block title %}Ajouter une bannière{% endblock %}
 {% block stylesheets %}
 <link href="../../../assets/style.css" rel="stylesheet">
+<link href="../../../assets/mobile_style.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
 <main class="add-photo-media-page">
-    {# <div class="add-media-form">
-        {{ form_errors(photoForm) }}
-
-        {{ form_start(photoForm, {'attr': {'class': 'addPhotoForm'}}) }}
-            {{ form_label(photoForm.media_path, "Choisissez l'image que vous voulez ajouter :", {
-                'label_attr': {'class': 'addPhotoForm-label'}
-            }) }}
-            {{ form_row(photoForm.media_path, {'attr': {'class': 'addPhotoForm-row'}}) }}
-            <button type="submit" class="register-form-btn">Ajouter</button>
-        {{ form_end(photoForm) }}
-    </div> #}
-
     <div class="add-media-form">
         {{ form_errors(bannerForm) }}
 

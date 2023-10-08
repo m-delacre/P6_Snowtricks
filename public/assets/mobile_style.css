@@ -1,0 +1,329 @@
+/*  mobile  */
+@media only screen and (max-width: 900px) {
+    body {
+        position: relative;
+    }
+
+    /*  header   */
+    header .computer {
+        display: none;
+    }
+
+    header .mobile {
+        width: 100%;
+        height: 90px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #fdfdfd;
+        font-size: 30px;
+    }
+
+    #paper_deco {
+        display: none;
+    }
+
+    footer {
+        padding: 0;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    footer p {
+        margin-left: 30px;
+    }
+
+    /*  home page   */
+
+    .home-welcome {
+        margin-bottom: 20px;
+    }
+
+    #home_paper_deco,
+    #home_paper_deco2 {
+        display: none;
+    }
+
+    .home-welcome-content img {
+        display: none;
+    }
+
+    .home-welcome-content h1 {
+        font-size: 20px;
+    }
+
+    .home-welcome-arrow {
+        bottom: 10px;
+        right: 10px;
+        font-size: 40px;
+    }
+
+    .home-welcome-arrowUp {
+        bottom: -40px;
+        right: 0px;
+        font-size: 40px;
+    }
+
+    .home-figures {
+        padding: 0px 20px 0px 20px;
+    }
+
+    .home-figures h1 {
+        font-size: 30px;
+    }
+
+    .home-cards {
+        flex-direction: column;
+    }
+
+    .figure-card {
+        width: 100%;
+        border: 4px solid black;
+        height: 380px;
+    }
+
+    .figure-card-top {
+        border-bottom: 4px solid black;
+    }
+
+    .figure-card-bot {
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    .figure-card-bot p a {
+        font-size: 23px;
+        font-weight: 600;
+    }
+
+    /*  page figures    */
+    .figures-page {
+        padding: 0px 15px 0px 15px;
+        margin-bottom: 50px;
+    }
+
+    /*  login page  */
+    .login-form {
+        width: 300px;
+    }
+
+    .login-form input[type="text"],
+    input[type="password"] {
+        width: 300px;
+    }
+
+    .login-form h1 {
+        font-size: 35px;
+    }
+
+    .login-form label {
+        font-size: 20px;
+    }
+
+    /*  register page   */
+    .registerpage {
+        margin-bottom: 30px;
+    }
+
+    .registerpage h1 {
+        font-size: 35px;
+    }
+
+    .register-form {
+        width: 300px;
+    }
+
+    .register-form input[type="text"],
+    input[type="password"] {
+        width: 300px;
+    }
+
+    /* password forget */
+    .reset-password-page {
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .reset-password-page h1 {
+        font-size: 25px;
+    }
+
+    .resetPassword-form {
+        width: 300px;
+    }
+    .resetPassword-form input {
+        width: 300px;
+    }
+
+    /*  connexion required page */
+
+    .connexionRequired-page {
+        padding: 0px 20px 0px 20px;
+        gap: 20px;
+        font-size: 20px;
+    }
+
+    /*  page create    */
+
+    .create-figure-page {
+        padding: 0px 15px 0px 15px;
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .create-figure-form {
+        width: 300px;
+    }
+
+    .create-figure-form textarea {
+        width: 300px;
+        max-width: 300px;
+    }
+
+    .addVideo-form-inputgroup {
+        font-size: 15px;
+    }
+
+    .create-figure-form button {
+        width: 300px;
+    }
+
+    /*  figure page    */
+
+    .figure-page {
+        padding: 0;
+    }
+
+    .figure-page-head {
+        height: 300px;
+    }
+
+    .figure-page-medias {
+        flex-direction: column-reverse;
+        row-gap: 20px;
+        column-gap: 0px;
+        align-items: center;
+        display: none;
+    }
+
+    .showMedias {
+        display: flex;
+    }
+
+    .showMediaBtn {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .showMediaBtn p{
+        border: 3px solid black;
+        padding: 10px 20px 10px 20px;
+    }
+
+    .hideBtn {
+        display: none;
+    }
+
+    .figure-page-description {
+        width: 100%;
+        padding: 0px 15px 0px 15px;
+        box-sizing: border-box;
+        margin-top: 0px;
+    }
+
+    .figure-page-info {
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .figure-page-info-capsule {
+        padding: 10px 20px 10px 20px;
+        font-size: 15px;
+    }
+
+    .comment-form {
+        width: 300px;
+    }
+
+    .comment-form-input {
+        width: 300px;
+    }
+
+    .comment-form label {
+        margin-left: 0;
+    }
+
+    .all-comments-section {
+        padding: 0;
+    }
+
+    .all-comments-section article {
+        width: 300px;
+    }
+
+    .comment-user-info {
+        font-size: 12px;
+    }
+
+    .loadComment-btn {
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+
+    /*  edit figure page  */
+    .MediaModal {
+        top: 20%;
+        left: 0%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 5px solid black;
+    }
+
+    .edit-figure-form {
+        width: 100%;
+        padding: 0px 15px 0px 15px;
+    }
+
+    .edit-figure-form-row {
+        width: 300px;
+    }
+
+    .edit-figure-form select,
+    input[type="text"] {
+        width: 300px;
+    }
+
+    .deleteFigureModal {
+        top: 800px;
+    }
+
+    /*  add photo media page  */
+
+    .add-photo-media-page {
+        padding: 0;
+    }
+
+    .addVideo-form-inputgroup {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .addVideo-form input[type="text"] {
+        width: 300px;
+        height: 30px;
+    }
+
+    .register-form-btn {
+        padding: 10px 10px 10px 10px;
+    }
+}
