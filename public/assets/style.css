@@ -9,8 +9,11 @@ body {
 }
 
 /*  navigation  */
+header .mobile{
+  display: none;
+}
 
-header {
+header .computer{
   box-sizing: border-box;
   width: 100%;
   height: 90px;
@@ -151,7 +154,6 @@ a {
 .home-figures {
   width: 100%;
   height: fit-content;
-  min-height: 70vh;
   box-sizing: border-box;
   margin-bottom: 50px;
   padding: 50px 200px 50px 200px;
@@ -544,6 +546,14 @@ input[type="password"]:focus {
   column-gap: 25px;
   box-sizing: border-box;
   margin-top: 30px;
+}
+
+.showMediaBtn{
+  display: none;
+}
+
+.hideBtn {
+  display: none;
 }
 
 .figure-media {
@@ -1021,7 +1031,8 @@ input[type="text"] {
 
 .reset-password-page{
   width: 100%;
-  height: 80vh;
+  height: fit-content;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1135,7 +1146,7 @@ input[type="text"] {
   text-decoration: underline;
 }
 
-/*  can't modify this figure page */
+/*  connexion required page */
 
 .connexionRequired-page{
   width: 100%;

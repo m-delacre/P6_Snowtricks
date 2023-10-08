@@ -1,40 +1,62 @@
-<header>
-    <img id="paper_deco" src="{{ asset('../assets/images/deco/papier.png') }}" alt="snow_decoration">
-    <div class="nav-left">
-        <a href={{ path('app_home')}} id="home-logo"><img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo"></a>
-    </div>
-    <div class="nav-right">
+<header id="header">
+    <div class="computer">
+        <img id="paper_deco" src="{{ asset('../assets/images/deco/papier.png') }}" alt="snow_decoration">
+        <div class="nav-left">
+            <a href={{ path('app_home')}}><img src="{{ asset('assets/images/Snowtricks_Logo.png') }}" alt="logo"></a>
+        </div>
+        <div class="nav-right">
 
-        <div class="nav-right-link">
-            <a href="{{ path('app_home')}}">Accueil</a>
-        </div>
+            <div class="nav-right-link">
+                <a href="{{ path('app_home')}}">Accueil</a>
+            </div>
 
-        <div class="nav-right-link">
-            <a href="{{ path('app_figures')}}">Tricks</a>
-        </div>
+            <div class="nav-right-link">
+                <a href="{{ path('app_figures')}}">Tricks</a>
+            </div>
 
-        <div class="nav-right-link">
-            <a href="{{ path('app_figure_create')}}">Ajouter un trick</a>
-        </div>
+            <div class="nav-right-link">
+                <a href="{{ path('app_figure_create')}}">Ajouter un trick</a>
+            </div>
 
-        {% if app.user %}
-        <div class="nav-right-link">
-            <a href="#">
-                {{ app.user ? app.user.username : '' }}
-            </a>
-        </div>
-        {% endif %}
-    
-        {% if app.user == false %}
-        <div class="nav-right-link">
-            <a href="{{ path('app_register')}}">Inscription</a>
-        </div>
-        {% endif %}
+            {% if app.user %}
+            <div class="nav-right-link">
+                <a href="#">
+                    {{ app.user ? app.user.username : '' }}
+                </a>
+            </div>
+            {% endif %}
         
-        <div class="nav-right-link">
-            <a href=" {{ app.user ? path('app_logout') : path('app_login') }} ">
-                {{ app.user ? 'Déconnexion' : 'Connexion' }}
-            </a>
+            {% if app.user == false %}
+            <div class="nav-right-link">
+                <a href="{{ path('app_register')}}">Inscription</a>
+            </div>
+            {% endif %}
+            
+            <div class="nav-right-link">
+                <a href=" {{ app.user ? path('app_logout') : path('app_login') }} ">
+                    {{ app.user ? 'Déconnexion' : 'Connexion' }}
+                </a>
+            </div>
         </div>
+    </div>
+    <div class="mobile">
+            <a href="{{ path('app_home')}}">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="{{ path('app_figures')}}">
+                <i class="fa-solid fa-person-snowboarding"></i>
+            </a>
+            <a href="{{ path('app_figure_create')}}">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            {% else %}
+                <a href="{{ path('app_login') }}">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </a>
+            {% endif %}
     </div>
 </header>
