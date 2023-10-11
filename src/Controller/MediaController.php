@@ -23,7 +23,7 @@ class MediaController extends AbstractController
         $figure = $media->getFigure();
 
         // Suppression de l'image
-        if ($media->getGroupe() == MediaGroupe::photo) {
+        if ($media->getGroupe() === MediaGroupe::photo) {
             unlink($media->getMediaPath());
         }
 
@@ -36,13 +36,13 @@ class MediaController extends AbstractController
     #[Route('/media/create/photo/{id}', name: 'app_media_create_photo')]
     public function createMediaPhoto(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
     {
-        if ($this->getUser() == null) {
+        if ($this->getUser() === null) {
             return $this->render('other/connexionRequired.html.twig');
         }
 
         $canCreate = $this->userCanCreateMedia($this->getUser(), $figure);
 
-        if ($canCreate == false) {
+        if ($canCreate === false) {
             return $this->render('other/cant_modify_figure.html.twig');
         }
 
@@ -92,7 +92,7 @@ class MediaController extends AbstractController
     #[Route('/media/create/video/{id}', name: 'app_media_create_video')]
     public function createMediaVideo(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
     {
-        if ($this->getUser() == null) {
+        if ($this->getUser() === null) {
             return $this->render('other/connexionRequired.html.twig');
         }
 

@@ -104,12 +104,9 @@ class FigureController extends AbstractController
             $newFigure->setCreationDate(new DateTime());
 
             //création du slug pour la recherche
-            //$slugger = new AsciiSlugger();
             $newSlug = $slugger->slug($newFigure->getName());
 
             $newFigure->setSlug($newSlug);
-
-            //dd( $newFigure->getSlug());
 
             //enregistrement des données
             $entityManager->persist($newFigure);
@@ -146,7 +143,7 @@ class FigureController extends AbstractController
     }
 
     #[Route('/figure/delete/{id}', name: 'app_figure_delete')]
-    public function deleteFigure(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
+    public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager): Response
     {
         $figureMedias = $figure->getMedia();
 
