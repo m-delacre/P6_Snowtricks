@@ -41,7 +41,7 @@ class Figure
     #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
     public function __construct()

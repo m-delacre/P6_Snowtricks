@@ -17,7 +17,7 @@ class CommentController extends AbstractController
     #[Route('/api/comments/{figureName}/{offset}', name: 'app_comment_loadMore')]
     public function getTwoComments($figureName, $offset, CommentRepository $commentRepository, EntityManagerInterface $em, FigureRepository $figureRepository): JsonResponse
     {
-        $figure = $figureRepository->findOneBy(['name'=>$figureName]);
+        $figure = $figureRepository->findOneBy(['name' => $figureName]);
         $comments = $commentRepository->loadMoreComments($figure, $offset, $em);
         return new JsonResponse($comments, Response::HTTP_OK, [], false);
     }

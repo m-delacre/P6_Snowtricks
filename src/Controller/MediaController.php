@@ -183,7 +183,7 @@ class MediaController extends AbstractController
 
                 $entityManager->persist($newBanner);
                 $entityManager->flush();
-                
+
                 return $this->redirectToRoute('app_figure_edit', ['id' => $figure->getId()]);
             }
         }
@@ -245,7 +245,7 @@ class MediaController extends AbstractController
 
                 $entityManager->persist($media);
                 $entityManager->flush();
-                
+
                 return $this->redirectToRoute('app_figure_edit', ['id' => $figure->getId()]);
             }
         }

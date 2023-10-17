@@ -27,6 +27,8 @@ Ouvrez votre terminal favori et rendez-vous dans le dossier où se trouve le clo
 
 ```
 
+Importez la base de donnée (disponible dans ./jeu_donnees/p6_snowtricks.sql) sur votre serveur de base de donnée.
+
 ## Configurer le projet
 
 Maintenant que le projet est installé, il faut le configurer.

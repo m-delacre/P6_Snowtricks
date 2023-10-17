@@ -507,6 +507,7 @@ input[type="password"]:focus {
   width: 100%;
   height: 100%;
   filter: brightness(0.5);
+  object-fit: cover;
 }
 
 .figure-page-head-title {

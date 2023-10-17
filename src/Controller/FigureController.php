@@ -24,7 +24,7 @@ class FigureController extends AbstractController
     public function getFiguresFrom($offset, EntityManagerInterface $em, FigureRepository $figureRepository): JsonResponse
     {
         $start = (int)$offset;
-        $data = $figureRepository->loadMoreCards($start,$em);
+        $data = $figureRepository->loadMoreCards($start, $em);
 
         return new JsonResponse($data, Response::HTTP_OK, [], false);
     }
@@ -40,12 +40,8 @@ class FigureController extends AbstractController
     }
 
     #[Route('/figure/show/{slug}', name: 'app_figure')]
-    public function displayFigure(FigureRepository $figureRepository, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function displayFigure($slug, FigureRepository $figureRepository, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $dataURL = $request->getPathInfo();
-
-        $name = substr($dataURL, strpos($dataURL, "show") + 5);
-        $slug = $slugger->slug($name);
         $figure = $figureRepository->findOneBy(['slug' => $slug]);
 
         if (!$figure) {
@@ -122,7 +118,7 @@ class FigureController extends AbstractController
     }
 
     #[Route('/figure/edit/{id}', name: 'app_figure_edit')]
-    public function editFigure(Figure $figure, Request $request, EntityManagerInterface $entityManager): Response
+    public function editFigure(Figure $figure, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         // création du formulaire d'édition de la figure
         $figureForm = $this->createForm(FigureFormType::class, $figure);
@@ -131,6 +127,8 @@ class FigureController extends AbstractController
         // Envoie du formulaire de la figure
         if ($figureForm->isSubmitted() && $figureForm->isValid()) {
             $figure->setUpdateDate(new DateTime());
+            $newSlug = $slugger->slug($figure->getName());
+            $figure->setSlug($newSlug);
             $entityManager->flush();
             return $this->redirectToRoute('app_figure', ['slug' => $figure->getSlug()]);
         }
